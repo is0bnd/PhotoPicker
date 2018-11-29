@@ -23,6 +23,7 @@ class DSImageListVC: UIViewController {
     private var itemWidth: CGFloat = 0
     private let imageManager = PHCachingImageManager()
     
+    var isOriginal = false
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var isOriginalButton: UIButton!
     @IBOutlet weak var showItem: UIBarButtonItem!
@@ -51,18 +52,15 @@ class DSImageListVC: UIViewController {
     @IBAction func done() {
         for asset in selectedAssets {
             let operation = BlockOperation {
-                self.imageManager.requestDefaultImage(for: asset){ (image) in
-                    if let image = image {
-                        let index = self.selectedAssets.firstIndex(of: asset)!
-                        self.backImages[index] = image
-                    }
-                }
+                self.requestImageFromAsset(asset)
             }
             queue.addOperation(operation)
         }
         let doneOperation = BlockOperation {
-            self.navigationController?.dismiss(animated: true, completion: nil)
-            DSImagePickerManger.shared.resultHandler?(self.backImages)
+            DispatchQueue.main.async {
+                self.navigationController?.dismiss(animated: true, completion: nil)
+                DSImagePickerManger.shared.resultHandler?(self.backImages)
+            }
         }
         _ = queue.operations.map {
             doneOperation.addDependency($0)
@@ -70,6 +68,23 @@ class DSImageListVC: UIViewController {
         queue.addOperation(doneOperation)
     }
     
+    private func requestImageFromAsset(_ asset: PHAsset) {
+        if isOriginal {
+            imageManager.requestOriginalImage(for: asset, options: .sync){ (image) in
+                if let image = image {
+                    let index = self.selectedAssets.firstIndex(of: asset)!
+                    self.backImages[index] = image
+                }
+            }
+        }else {
+            imageManager.requestDefaultImage(for: asset, options: .sync){ (image) in
+                if let image = image {
+                    let index = self.selectedAssets.firstIndex(of: asset)!
+                    self.backImages[index] = image
+                }
+            }
+        }
+    }
     
     
     @IBAction func browserImages(_ sender: Any) {
@@ -78,6 +93,7 @@ class DSImageListVC: UIViewController {
     
     @IBAction func userOriginalImage(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
+        isOriginal = sender.isSelected
     }
     
     @IBAction func cancelPick(_ sender: Any) {

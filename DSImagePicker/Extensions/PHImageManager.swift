@@ -19,15 +19,21 @@ extension PHImageManager {
         }
     }
     @discardableResult
-    func requestDefaultImage(for asset: PHAsset, resultHandler: @escaping (UIImage?) -> Void) -> PHImageRequestID {
-        return requestImage(for: asset, targetSize: CGSize(width: 1024, height: 1024), contentMode: .default, options: .default) { (image, _) in
+    func requestDefaultImage(for asset: PHAsset,
+                             options: PHImageRequestOptions = .default,
+                             resultHandler: @escaping (UIImage?) -> Void)
+        -> PHImageRequestID {
+        return requestImage(for: asset, targetSize: CGSize(width: 1024, height: 1024), contentMode: .default, options: options) { (image, _) in
             resultHandler(image)
         }
     }
     
     @discardableResult
-    func requestOriginalImage(for asset: PHAsset, resultHandler: @escaping (UIImage?) -> Void) -> PHImageRequestID {
-        return requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .default, options: .original){ (image, _) in
+    func requestOriginalImage(for asset: PHAsset,
+                              options: PHImageRequestOptions = .default,
+                              resultHandler: @escaping (UIImage?) -> Void)
+        -> PHImageRequestID {
+        return requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .default, options: options) { (image, _) in
             resultHandler(image)
         }
     }

@@ -26,14 +26,13 @@ extension PHImageRequestOptions {
         return options
     }()
     
-    static let original: PHImageRequestOptions = {
+    static let sync: PHImageRequestOptions = {
         let options = PHImageRequestOptions()
         options.isNetworkAccessAllowed = true
-        options.isSynchronous = false
+        options.isSynchronous = true
         options.resizeMode = .none
         return options
     }()
-    
     
 }
 
