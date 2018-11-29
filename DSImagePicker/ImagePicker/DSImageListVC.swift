@@ -69,6 +69,19 @@ class DSImageListVC: UIViewController {
         queue.addOperation(doneOperation)
     }
     
+    
+    
+    @IBAction func browserImages(_ sender: Any) {
+        ImageBrowerController.showBrower(with: selectedAssets, sourceVC: self)
+    }
+    
+    @IBAction func userOriginalImage(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+    }
+    
+    @IBAction func cancelPick(_ sender: Any) {
+        navigationController?.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension DSImageListVC: UICollectionViewDataSource {

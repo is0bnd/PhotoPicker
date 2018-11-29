@@ -15,6 +15,8 @@
 		22DB7F3121AD27E100267580 /* DSAlbumListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DB7F3021AD27E100267580 /* DSAlbumListVC.swift */; };
 		22DB7F3321AD280900267580 /* DSImageListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DB7F3221AD280900267580 /* DSImageListVC.swift */; };
 		22DB7F3521AD281D00267580 /* DSImagePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22DB7F3421AD281D00267580 /* DSImagePicker.storyboard */; };
+		22F02F7021AF78320009EB41 /* UIImageViewImageSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F02F6F21AF78320009EB41 /* UIImageViewImageSource.swift */; };
+		22F02F7221AF7A3F0009EB41 /* DSImageBrowserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F02F7121AF7A3F0009EB41 /* DSImageBrowserVC.swift */; };
 		22FE7AAE21AE9A3C002193E9 /* DSImagePickerManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FE7AAD21AE9A3C002193E9 /* DSImagePickerManger.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +31,8 @@
 		22DB7F3021AD27E100267580 /* DSAlbumListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSAlbumListVC.swift; sourceTree = "<group>"; };
 		22DB7F3221AD280900267580 /* DSImageListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSImageListVC.swift; sourceTree = "<group>"; };
 		22DB7F3421AD281D00267580 /* DSImagePicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DSImagePicker.storyboard; sourceTree = "<group>"; };
+		22F02F6F21AF78320009EB41 /* UIImageViewImageSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewImageSource.swift; sourceTree = "<group>"; };
+		22F02F7121AF7A3F0009EB41 /* DSImageBrowserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSImageBrowserVC.swift; sourceTree = "<group>"; };
 		22FE7AAD21AE9A3C002193E9 /* DSImagePickerManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSImagePickerManger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,7 +66,8 @@
 		223C68B121AD206400EE4D7F /* DSImagePicker */ = {
 			isa = PBXGroup;
 			children = (
-				223C68C421AD20F100EE4D7F /* source */,
+				22F02F6E21AF775E0009EB41 /* ImageBrowser */,
+				223C68C421AD20F100EE4D7F /* ImagePicker */,
 				223C68B221AD206400EE4D7F /* AppDelegate.swift */,
 				223C68B421AD206400EE4D7F /* ViewController.swift */,
 				223C68B621AD206400EE4D7F /* Main.storyboard */,
@@ -73,7 +78,7 @@
 			path = DSImagePicker;
 			sourceTree = "<group>";
 		};
-		223C68C421AD20F100EE4D7F /* source */ = {
+		223C68C421AD20F100EE4D7F /* ImagePicker */ = {
 			isa = PBXGroup;
 			children = (
 				22DB7F3021AD27E100267580 /* DSAlbumListVC.swift */,
@@ -81,7 +86,16 @@
 				22DB7F3421AD281D00267580 /* DSImagePicker.storyboard */,
 				22FE7AAD21AE9A3C002193E9 /* DSImagePickerManger.swift */,
 			);
-			path = source;
+			path = ImagePicker;
+			sourceTree = "<group>";
+		};
+		22F02F6E21AF775E0009EB41 /* ImageBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				22F02F6F21AF78320009EB41 /* UIImageViewImageSource.swift */,
+				22F02F7121AF7A3F0009EB41 /* DSImageBrowserVC.swift */,
+			);
+			path = ImageBrowser;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,8 +171,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				22DB7F3121AD27E100267580 /* DSAlbumListVC.swift in Sources */,
+				22F02F7021AF78320009EB41 /* UIImageViewImageSource.swift in Sources */,
 				22DB7F3321AD280900267580 /* DSImageListVC.swift in Sources */,
 				223C68B521AD206400EE4D7F /* ViewController.swift in Sources */,
+				22F02F7221AF7A3F0009EB41 /* DSImageBrowserVC.swift in Sources */,
 				223C68B321AD206400EE4D7F /* AppDelegate.swift in Sources */,
 				22FE7AAE21AE9A3C002193E9 /* DSImagePickerManger.swift in Sources */,
 			);

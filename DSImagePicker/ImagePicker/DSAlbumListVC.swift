@@ -72,6 +72,10 @@ class DSAlbumListVC: UITableViewController {
         
     }
     
+    @IBAction func cancelPick(_ sender: Any) {
+        navigationController?.dismiss(animated: true, completion: nil)
+    }
+    
     //表格分区数
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -152,7 +156,6 @@ extension PHImageManager {
     @discardableResult
     func requestThumbImage(for asset: PHAsset, targetSize: CGSize, resultHandler: @escaping (UIImage?) -> Void) -> PHImageRequestID {
         let scale = UIScreen.main.scale
-        print(scale)
         let newSize = CGSize(width: targetSize.width * scale,
                              height: targetSize.height * scale)
         return requestImage(for: asset, targetSize: newSize, contentMode: .aspectFill, options: .thumb) { (image, _) in
