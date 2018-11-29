@@ -25,6 +25,7 @@ class DSImageListVC: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var isOriginalButton: UIButton!
+    @IBOutlet weak var showItem: UIBarButtonItem!
     @IBOutlet weak var doneItem: UIBarButtonItem!
     
     private var queue = OperationQueue()
@@ -120,6 +121,7 @@ extension DSImageListVC: UICollectionViewDelegateFlowLayout {
         }
         doneItem.title = "完成(\(selectedAssets.count))"
         doneItem.isEnabled = selectedAssets.count > 0
+        showItem.isEnabled = selectedAssets.count > 0
         collectionView.reloadData()
     }
 }
@@ -133,16 +135,10 @@ class DSImageListCell: UICollectionViewCell {
     }
     var selectedIndex: Int? {
         didSet {
-            if selectedIndex != nil {
-                pickButton.setTitle("\(selectedIndex! + 1)", for: .normal)
-                pickButton.backgroundColor = UIColor(red: 21 / 255.0,
-                                                     green: 173 / 255.0,
-                                                     blue: 25 / 255.0,
-                                                     alpha: 1)
-            }else {
-                pickButton.setTitle(nil, for: .normal)
-                pickButton.backgroundColor = UIColor(white: 0, alpha: 0.3)
-            }
+            let isEmpty = selectedIndex == nil
+            pickButton.isHidden = isEmpty
+            let title = isEmpty ? nil : "\(selectedIndex! + 1)"
+            pickButton.setTitle(title, for: .normal)
         }
     }
     

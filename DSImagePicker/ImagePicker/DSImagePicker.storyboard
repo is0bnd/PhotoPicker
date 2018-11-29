@@ -92,9 +92,9 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BV1-oN-e8v">
                                                     <rect key="frame" x="0.0" y="0.0" width="111" height="107"/>
                                                 </imageView>
-                                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q9H-ZM-FYi">
+                                                <button hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q9H-ZM-FYi">
                                                     <rect key="frame" x="86" y="1" width="24" height="24"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29532320205479451" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.3921568627" green="0.61960784310000006" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="q9H-ZM-FYi" secondAttribute="height" multiplier="1:1" id="Hif-rp-zoW"/>
                                                         <constraint firstAttribute="height" constant="24" id="RVJ-oK-N5S"/>
@@ -138,17 +138,23 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XJ1-fG-ewr">
                                 <rect key="frame" x="0.0" y="729" width="375" height="49"/>
                                 <items>
-                                    <barButtonItem title="预览" id="W8z-hm-oZy">
+                                    <barButtonItem enabled="NO" title="预览" id="W8z-hm-oZy">
                                         <connections>
                                             <action selector="browserImages:" destination="amz-El-Jvh" id="GHx-BB-WVi"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ztF-2d-Lbo"/>
                                     <barButtonItem style="plain" id="ddK-Qu-krg">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Fkb-8i-6UZ">
-                                            <rect key="frame" x="164.66666666666666" y="12" width="46" height="30"/>
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Fkb-8i-6UZ">
+                                            <rect key="frame" x="160" y="15.666666666666664" width="55" height="23"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="原图"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <state key="normal" title="原图" image="selected_n">
+                                                <color key="titleColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                            </state>
+                                            <state key="selected" image="selected_s">
+                                                <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
                                             <connections>
                                                 <action selector="userOriginalImage:" destination="amz-El-Jvh" eventType="touchUpInside" id="49P-XR-45B"/>
                                             </connections>
@@ -186,6 +192,7 @@
                         <outlet property="collectionView" destination="XVv-XB-gsa" id="3AU-sx-WWh"/>
                         <outlet property="doneItem" destination="Ob0-k0-cGg" id="wYi-qU-faA"/>
                         <outlet property="isOriginalButton" destination="Fkb-8i-6UZ" id="c9W-SI-m4s"/>
+                        <outlet property="showItem" destination="W8z-hm-oZy" id="xLb-k9-FhB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vzT-Jo-fod" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -196,8 +203,8 @@
         <scene sceneID="VB9-gZ-1tu">
             <objects>
                 <navigationController id="jby-bY-0i1" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="WDm-ao-8oh">
-                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WDm-ao-8oh">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -209,4 +216,8 @@
             <point key="canvasLocation" x="-607" y="-94"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="selected_n" width="16" height="16"/>
+        <image name="selected_s" width="16" height="16"/>
+    </resources>
 </document>

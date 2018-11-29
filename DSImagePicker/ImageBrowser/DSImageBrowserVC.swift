@@ -10,15 +10,10 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
+//MARK: - 图片浏览器VC
 class ImageBrowerController: UICollectionViewController {
     
-    static func showBrower(with images: [UIImageViewImageSource], sourceVC: UIViewController) {
-        let browserVC = ImageBrowerController()
-        browserVC.imageSources = images
-        sourceVC.show(browserVC, sender: nil)
-    }
-    
-    var imageSources = [UIImageViewImageSource]()
+    private var imageSources = [UIImageViewImageSource]()
     
     init() {
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
@@ -27,25 +22,32 @@ class ImageBrowerController: UICollectionViewController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
-    
+}
+
+//MARK: - 跳转方法
+extension ImageBrowerController {
+    static func showBrower(with images: [UIImageViewImageSource], sourceVC: UIViewController) {
+        let browserVC = ImageBrowerController()
+        browserVC.imageSources = images
+        sourceVC.show(browserVC, sender: nil)
+    }
+}
+
+//MARK: - 生命周期
+extension ImageBrowerController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         config()
-    }
-    
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
-    func configNav() {
-        
     }
     
     private func config() {
         title = "1/\(imageSources.count)"
-        
+        configCollectionView()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapView))
+    }
+    
+    private func configCollectionView() {
         let layout = collectionView!.collectionViewLayout as! UICollectionViewFlowLayout
         layout.scrollDirection = .horizontal
         layout.itemSize = UIScreen.main.bounds.size
@@ -62,8 +64,14 @@ class ImageBrowerController: UICollectionViewController {
         self.collectionView!.register(ImageBrowerCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
+    @objc private func tapView() {
+        if let navigationController = navigationController {
+            navigationController.setNavigationBarHidden(!navigationController.navigationBar.isHidden, animated: true)
+        }
+    }
 }
 
+//MARK: - 设置CollectionView 滚动停止位置
 extension ImageBrowerController {
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let offset = scrollView.contentOffset
@@ -86,6 +94,7 @@ extension ImageBrowerController {
     }
 }
 
+
 extension ImageBrowerController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imageSources.count
@@ -98,8 +107,14 @@ extension ImageBrowerController {
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let index = Int(scrollView.contentOffset.x / scrollView.bounds.size.width) + 1
-        title = "\(index)/\(imageSources.count)"
+        let index = Int(scrollView.contentOffset.x / scrollView.bounds.size.width)
+        title = "\(index + 1)/\(imageSources.count)"
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if cell.isKind(of: ImageBrowerCell.self) {
+            (cell as! ImageBrowerCell).scrollView.zoomScale = 1
+        }
     }
 }
 

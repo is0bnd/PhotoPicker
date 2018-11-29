@@ -12,6 +12,9 @@
 		223C68B821AD206400EE4D7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 223C68B621AD206400EE4D7F /* Main.storyboard */; };
 		223C68BA21AD206600EE4D7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 223C68B921AD206600EE4D7F /* Assets.xcassets */; };
 		223C68BD21AD206600EE4D7F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 223C68BB21AD206600EE4D7F /* LaunchScreen.storyboard */; };
+		228FBB9421AFD0D0009B5F26 /* PHImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228FBB9321AFD0D0009B5F26 /* PHImageManager.swift */; };
+		228FBB9621AFD1C8009B5F26 /* PHImageRequestOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228FBB9521AFD1C8009B5F26 /* PHImageRequestOptions.swift */; };
+		228FBB9821AFD6B6009B5F26 /* ImagePicker.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 228FBB9721AFD6B6009B5F26 /* ImagePicker.xcassets */; };
 		22DB7F3121AD27E100267580 /* DSAlbumListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DB7F3021AD27E100267580 /* DSAlbumListVC.swift */; };
 		22DB7F3321AD280900267580 /* DSImageListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DB7F3221AD280900267580 /* DSImageListVC.swift */; };
 		22DB7F3521AD281D00267580 /* DSImagePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22DB7F3421AD281D00267580 /* DSImagePicker.storyboard */; };
@@ -28,6 +31,9 @@
 		223C68B921AD206600EE4D7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		223C68BC21AD206600EE4D7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		223C68BE21AD206600EE4D7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		228FBB9321AFD0D0009B5F26 /* PHImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHImageManager.swift; sourceTree = "<group>"; };
+		228FBB9521AFD1C8009B5F26 /* PHImageRequestOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHImageRequestOptions.swift; sourceTree = "<group>"; };
+		228FBB9721AFD6B6009B5F26 /* ImagePicker.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ImagePicker.xcassets; sourceTree = "<group>"; };
 		22DB7F3021AD27E100267580 /* DSAlbumListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSAlbumListVC.swift; sourceTree = "<group>"; };
 		22DB7F3221AD280900267580 /* DSImageListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSImageListVC.swift; sourceTree = "<group>"; };
 		22DB7F3421AD281D00267580 /* DSImagePicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DSImagePicker.storyboard; sourceTree = "<group>"; };
@@ -66,6 +72,7 @@
 		223C68B121AD206400EE4D7F /* DSImagePicker */ = {
 			isa = PBXGroup;
 			children = (
+				228FBB9221AFD0AF009B5F26 /* Extensions */,
 				22F02F6E21AF775E0009EB41 /* ImageBrowser */,
 				223C68C421AD20F100EE4D7F /* ImagePicker */,
 				223C68B221AD206400EE4D7F /* AppDelegate.swift */,
@@ -81,12 +88,22 @@
 		223C68C421AD20F100EE4D7F /* ImagePicker */ = {
 			isa = PBXGroup;
 			children = (
+				22DB7F3421AD281D00267580 /* DSImagePicker.storyboard */,
 				22DB7F3021AD27E100267580 /* DSAlbumListVC.swift */,
 				22DB7F3221AD280900267580 /* DSImageListVC.swift */,
-				22DB7F3421AD281D00267580 /* DSImagePicker.storyboard */,
 				22FE7AAD21AE9A3C002193E9 /* DSImagePickerManger.swift */,
+				228FBB9721AFD6B6009B5F26 /* ImagePicker.xcassets */,
 			);
 			path = ImagePicker;
+			sourceTree = "<group>";
+		};
+		228FBB9221AFD0AF009B5F26 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				228FBB9321AFD0D0009B5F26 /* PHImageManager.swift */,
+				228FBB9521AFD1C8009B5F26 /* PHImageRequestOptions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		22F02F6E21AF775E0009EB41 /* ImageBrowser */ = {
@@ -158,6 +175,7 @@
 			files = (
 				223C68BD21AD206600EE4D7F /* LaunchScreen.storyboard in Resources */,
 				223C68BA21AD206600EE4D7F /* Assets.xcassets in Resources */,
+				228FBB9821AFD6B6009B5F26 /* ImagePicker.xcassets in Resources */,
 				223C68B821AD206400EE4D7F /* Main.storyboard in Resources */,
 				22DB7F3521AD281D00267580 /* DSImagePicker.storyboard in Resources */,
 			);
@@ -174,8 +192,10 @@
 				22F02F7021AF78320009EB41 /* UIImageViewImageSource.swift in Sources */,
 				22DB7F3321AD280900267580 /* DSImageListVC.swift in Sources */,
 				223C68B521AD206400EE4D7F /* ViewController.swift in Sources */,
+				228FBB9421AFD0D0009B5F26 /* PHImageManager.swift in Sources */,
 				22F02F7221AF7A3F0009EB41 /* DSImageBrowserVC.swift in Sources */,
 				223C68B321AD206400EE4D7F /* AppDelegate.swift in Sources */,
+				228FBB9621AFD1C8009B5F26 /* PHImageRequestOptions.swift in Sources */,
 				22FE7AAE21AE9A3C002193E9 /* DSImagePickerManger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -25,7 +25,7 @@ extension DSImagePickerManger {
                    resultHandler: @escaping ([UIImage]) -> Void) {
         self.resultHandler = resultHandler
         self.maxImageCount = maxImageCount
-        
+        UIApplication.shared.windows.last?.backgroundColor = .white
         let storyboard = UIStoryboard(name: "DSImagePicker", bundle: nil)
         if let toVC = storyboard.instantiateInitialViewController() {
             sourceVC.show(toVC, sender: nil)

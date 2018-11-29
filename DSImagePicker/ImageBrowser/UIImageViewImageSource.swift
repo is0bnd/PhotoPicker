@@ -15,7 +15,7 @@ protocol UIImageViewImageSource {
 
 extension PHAsset: UIImageViewImageSource {
     func imageViewShouldSetImage(_ imageView: UIImageView) {
-        PHCachingImageManager().requestDefaultImage(for: self) { (image) in
+        PHCachingImageManager().requestOriginalImage(for: self) { (image) in
             imageView.image = image
         }
     }
