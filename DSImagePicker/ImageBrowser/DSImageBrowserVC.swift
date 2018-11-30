@@ -44,7 +44,6 @@ extension ImageBrowerController {
     private func config() {
         title = "1/\(imageSources.count)"
         configCollectionView()
-        let tap = UITapGestureRecognizer(target: self, action: #selector(tapView))
     }
     
     private func configCollectionView() {

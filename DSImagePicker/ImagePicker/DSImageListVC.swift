@@ -59,7 +59,7 @@ class DSImageListVC: UIViewController {
         let doneOperation = BlockOperation {
             DispatchQueue.main.async {
                 self.navigationController?.dismiss(animated: true, completion: nil)
-                DSImagePickerManger.shared.resultHandler?(self.backImages)
+                DSImagePickerManger.shared.resultHandler?(self.backImages.filter{ return $0.size != .zero })
             }
         }
         _ = queue.operations.map {
