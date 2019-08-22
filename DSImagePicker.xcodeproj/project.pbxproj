@@ -155,6 +155,7 @@
 				TargetAttributes = {
 					223C68AE21AD206400EE4D7F = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1030;
 					};
 				};
 			};
@@ -359,7 +360,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.is0bnd.DSImagePicker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -377,7 +378,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.is0bnd.DSImagePicker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

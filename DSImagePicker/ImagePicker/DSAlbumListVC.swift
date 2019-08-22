@@ -30,17 +30,16 @@ class AlbumItem {
 // 相册列表页面
 class DSAlbumListVC: UITableViewController {
     
-    // 相册列白哦哦
+    // 相册列表
     var items:[AlbumItem] = []
     // 请求图片工具
     let imageManager = PHCachingImageManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        requestAllAlbums()
-        
+        // requestAllAlbums()
+        checkPermissions()
     }
-    
     
     
     @IBAction func cancelPick(_ sender: Any) {
@@ -134,5 +133,71 @@ extension DSAlbumListVC {
         performSegue(withIdentifier: "detail", sender: item)
     }
     
+}
+
+extension DSAlbumListVC {
+    private func checkPermissions() {
+        let status = PHPhotoLibrary.authorizationStatus()
+        reloadStatus(status)
+    }
+    
+    private func reloadStatus(_ status: PHAuthorizationStatus) {
+        switch status {
+        case .notDetermined: // 未选择
+            shouldRequestAuthorization()
+        case .restricted: // 用户权限受限
+            alertRestricted()
+        case .denied: // 已拒绝
+            alertDenied()
+        case .authorized: // 已授权
+            didAuthorized()
+        @unknown default:
+            unknowStatus()
+        }
+    }
+    
+    private func shouldRequestAuthorization() {
+        PHPhotoLibrary.requestAuthorization { [weak self] (status) in
+            self?.reloadStatus(status)
+        }
+    }
+    
+    private func alertRestricted() {
+        let message = #"您的权限受限, 联系管理员(例如家长)开启权限"#
+        let alert = UIAlertController(title: "温馨提示", message: message, preferredStyle: .alert)
+        let done = UIAlertAction(title: "确定", style: .default) { [weak self] _ in
+            self?.navigationController?.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(done)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    private func alertDenied() {
+        let message = #"请在iPhone的"设置-隐私-照片"选项中, 允许APP访问您的手机相册"#
+        let alert = UIAlertController(title: "温馨提示", message: message, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        let set = UIAlertAction(title: "去设置", style: .default) { _ in
+            let url = URL(string: UIApplication.openSettingsURLString)!
+            UIApplication.shared.open(url)
+        }
+        alert.addAction(cancel)
+        alert.addAction(set)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    private func didAuthorized() {
+        requestAllAlbums()
+    }
+    
+    private func unknowStatus() {
+        let message = #"未知异常错误,请稍后再试!"#
+        let alert = UIAlertController(title: "温馨提示", message: message, preferredStyle: .alert)
+        let done = UIAlertAction(title: "确定", style: .default) { [weak self] _ in
+            self?.navigationController?.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(done)
+        present(alert, animated: true, completion: nil)
+    }
+
 }
 

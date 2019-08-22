@@ -21,11 +21,16 @@ class GridView: UIView {
     @IBInspectable var space: CGFloat = 8 {
         didSet {
             collectionView.collectionViewLayout.invalidateLayout()
-            resetHeightConstant()
+            invalidateIntrinsicContentSize()
         }
     }
     
-    var imageSources = [UIImageViewImageSource]()
+    var imageSources = [UIImageViewImageSource]() {
+        didSet {
+            collectionView.collectionViewLayout.invalidateLayout()
+            invalidateIntrinsicContentSize()
+        }
+    }
     
     private var dragCell: UICollectionViewCell?
     private var targetView: UIView?
@@ -41,17 +46,18 @@ class GridView: UIView {
         return button
     }()
     
-    private lazy var heightConstraint: NSLayoutConstraint = {
-        let constraint = NSLayoutConstraint(item: self,
-                                            attribute: .height,
-                                            relatedBy: .equal,
-                                            toItem: nil,
-                                            attribute: .notAnAttribute,
-                                            multiplier: 1.0,
-                                            constant: 100)
-        constraint.priority = UILayoutPriority.fittingSizeLevel
-        return constraint
-    }()
+    override var intrinsicContentSize: CGSize {
+        let width = frame.size.width
+        let itemWidth = floor((width - space * 2) / 3)
+        if imageSources.count == 9 {
+            return CGSize(width: width, height: width)
+        }else {
+            let rowCount = ceil(CGFloat(imageSources.count + 1) / 3)
+            let height = rowCount * (itemWidth + space) - space
+            return CGSize(width: width, height: height)
+        }
+        
+    }
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -62,7 +68,7 @@ class GridView: UIView {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(GridViewCell.self, forCellWithReuseIdentifier: "GridViewCell")
-        collectionView.backgroundColor = self.backgroundColor
+        collectionView.backgroundColor = .clear
         collectionView.clipsToBounds = false
         return collectionView
     }()
@@ -75,8 +81,6 @@ class GridView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        translatesAutoresizingMaskIntoConstraints = false
-        addConstraint(heightConstraint)
         config()
     }
     
@@ -84,12 +88,10 @@ class GridView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         collectionView.frame = bounds
-        collectionView.reloadData()
     }
     
     func reloadData() {
         collectionView.reloadData()
-        resetHeightConstant()
     }
     
 }
@@ -100,15 +102,6 @@ extension GridView {
         addSubview(self.collectionView)
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(moveCollectionViewItem))
         collectionView.addGestureRecognizer(longPress)
-    }
-    
-    private func resetHeightConstant() {
-        let width = floor((frame.size.width - space * 2) / 3)
-        var rowCount = ceil(CGFloat(imageSources.count) / 3)
-        rowCount = isEditEnable ? rowCount + 1 : rowCount
-        rowCount = min(3, rowCount)
-        let height = rowCount * (width + space) - space
-        heightConstraint.constant = max(0, height)
     }
     
     @objc private func moveCollectionViewItem(by gestureRecognizer: UILongPressGestureRecognizer) {
@@ -183,7 +176,6 @@ extension GridView {
         targetView = nil
         currentIndexPath = nil
         removeDeleteButton()
-        resetHeightConstant()
     }
     
     private func longPressGestureRecognizerOtherStateAtPoint(_ point: CGPoint) {

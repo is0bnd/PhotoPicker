@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jby-bY-0i1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jby-bY-0i1">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -58,6 +58,7 @@
                     </navigationItem>
                     <connections>
                         <segue destination="amz-El-Jvh" kind="show" identifier="detail" id="sk6-2K-Xud"/>
+                        <segue destination="A8K-So-T57" kind="custom" identifier="check" customClass="DSAlbumPermissionsSegue" customModule="DSImagePicker" customModuleProvider="target" id="tnA-xZ-tZU"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Qx-lo-SCS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -208,6 +209,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KWq-JL-wbT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-607" y="-94"/>
+        </scene>
+        <!--Album PermissionsVC-->
+        <scene sceneID="YGa-Y9-kTd">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ltN-ES-dm8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="DSAlbumPermissionsVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="A8K-So-T57" customClass="DSAlbumPermissionsVC" customModule="DSImagePicker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YbN-qq-Jb7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="DXH-Io-fS5"/>
+                    </view>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="346" y="644"/>
         </scene>
     </scenes>
 </document>
